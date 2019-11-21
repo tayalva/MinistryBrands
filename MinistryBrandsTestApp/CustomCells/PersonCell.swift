@@ -12,9 +12,10 @@ class PersonCell: UITableViewCell {
     
     let containerView: UIView = {
         let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: 0, height: 50)
+        view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         view.layer.cornerRadius = 15
-        view.backgroundColor = UIColor.white
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor.parisGreen
         return view
     }()
     
@@ -34,11 +35,10 @@ class PersonCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(containerView)
+        contentView.addSubview(containerView)
         containerView.addSubview(personImageView)
         containerView.addSubview(nameLabel)
         addConstraints()
-        cellSetup()
     }
     
     required init?(coder: NSCoder) {
@@ -47,8 +47,7 @@ class PersonCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        
+        cellSetup()
     }
     
     class func cellHeight() -> CGFloat {
@@ -57,20 +56,20 @@ class PersonCell: UITableViewCell {
 
     func cellSetup() {
         self.selectionStyle = .none
-        contentView.backgroundColor = UIColor.jungleGreen
+        contentView.backgroundColor = UIColor.clear
     }
     
     
     func addConstraints() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
         containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         
         personImageView.translatesAutoresizingMaskIntoConstraints = false
         personImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
-        personImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: containerView.frame.height / 2).isActive = true
+        personImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 0).isActive = true
         personImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         personImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         

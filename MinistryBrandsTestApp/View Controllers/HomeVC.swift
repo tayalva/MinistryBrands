@@ -36,6 +36,9 @@ class HomeVC: UIViewController {
         addSubViews()
         setConstraints()
         registerCustomCells()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .jungleGreen
+        view.backgroundColor = .jungleGreen
     }
     
     func registerCustomCells() {
