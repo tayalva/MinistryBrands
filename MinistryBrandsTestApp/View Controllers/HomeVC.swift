@@ -94,4 +94,12 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         cell.nameLabel.text = "\(person.firstName) \(person.lastName)"
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let person = peopleList[indexPath.row]
+        if let vc = createVC(name: "PersonDetailVC", storyboard: "Main") as? PersonDetailVC {
+            vc.person = person
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

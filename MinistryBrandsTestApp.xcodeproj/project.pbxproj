@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23750FC979BBF3A5DAF893F0 /* Pods_MinistryBrandsTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AD6632035E0DA2261CD124 /* Pods_MinistryBrandsTestApp.framework */; };
+		347F89D723873CE70037FC70 /* PersonDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F89D623873CE70037FC70 /* PersonDetailVC.swift */; };
 		34B9628A238508B6005A50D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B96289238508B6005A50D8 /* AppDelegate.swift */; };
 		34B9628C238508B6005A50D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9628B238508B6005A50D8 /* SceneDelegate.swift */; };
 		34B9628E238508B6005A50D8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9628D238508B6005A50D8 /* LoginVC.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		347F89D623873CE70037FC70 /* PersonDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonDetailVC.swift; path = MinistryBrandsTestApp/PersonDetailVC.swift; sourceTree = SOURCE_ROOT; };
 		34B96286238508B6005A50D8 /* MinistryBrandsTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinistryBrandsTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34B96289238508B6005A50D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34B9628B238508B6005A50D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				34B9628D238508B6005A50D8 /* LoginVC.swift */,
 				34C569BB2385F0CE00A79B6C /* HomeVC.swift */,
+				347F89D623873CE70037FC70 /* PersonDetailVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				347F89D723873CE70037FC70 /* PersonDetailVC.swift in Sources */,
 				34C569B82385E7B700A79B6C /* NetworkManager.swift in Sources */,
 				34C569BC2385F0CE00A79B6C /* HomeVC.swift in Sources */,
 				34C569BE2385F28C00A79B6C /* UIViewControllerExtension.swift in Sources */,
