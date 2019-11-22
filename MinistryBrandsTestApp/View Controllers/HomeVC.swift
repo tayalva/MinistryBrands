@@ -28,8 +28,16 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        showLogin()
         setupUI()
         fetchPeople()
+    }
+    
+    func showLogin() {
+        if let loginVC = createVC(name: "LoginVC", storyboard: "Main") as? LoginVC {
+            loginVC.modalPresentationStyle = .overCurrentContext
+            present(loginVC, animated: true, completion: nil)
+        }
     }
     
     func setupUI() {
@@ -37,8 +45,6 @@ class HomeVC: UIViewController {
         setConstraints()
         registerCustomCells()
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .jungleGreen
-        view.backgroundColor = .jungleGreen
     }
     
     func registerCustomCells() {
@@ -90,6 +96,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             Nuke.loadImage(with: url, into: cell.personImageView)
         } else {
             cell.personImageView.image = #imageLiteral(resourceName: "blankUser")
+        }
+        if person.gender == "male" {
+            cell.containerView.backgroundColor = .turquoise
+        } else {
+            cell.containerView.backgroundColor = .lightPink
         }
         cell.nameLabel.text = "\(person.firstName) \(person.lastName)"
         return cell

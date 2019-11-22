@@ -15,18 +15,31 @@ class LoginVC: UIViewController {
     var passwordTextField = UITextField()
     var loginButton = UIButton()
     
+    var logoImageView: UIImageView = {
+          let imageView = UIImageView()
+          imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+          imageView.clipsToBounds = true
+          imageView.contentMode = .scaleAspectFit
+          imageView.image = #imageLiteral(resourceName: "logo")
+          return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubViews()
         setupUI()
     }
     
     func setupUI() {
         view.backgroundColor = UIColor.jungleGreen
-        setupTitle()
         addTextField(emailTextField, placeholder: "Your Email")
         addTextField(passwordTextField, placeholder: "Password")
         addLoginButton()
         setupConstraints()
+    }
+    
+    func addSubViews() {
+        view.addSubview(logoImageView)
     }
     
     func setupTitle() {
@@ -65,14 +78,16 @@ class LoginVC: UIViewController {
     }
     
     func setupConstraints() {
-        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        logoImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        emailTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 100).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 100).isActive = true
         emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive = true
         emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive = true
         
@@ -94,6 +109,7 @@ class LoginVC: UIViewController {
     @objc func loginButtonTapped(sender: UIButton) {
         print("Login Tapped")
         view.endEditing(true)
+        dismiss(animated: true, completion: nil)
     }
 }
 

@@ -39,6 +39,7 @@ class PersonCell: UITableViewCell {
         containerView.addSubview(personImageView)
         containerView.addSubview(nameLabel)
         addConstraints()
+        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
