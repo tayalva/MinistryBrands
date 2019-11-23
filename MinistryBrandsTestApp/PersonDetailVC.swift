@@ -420,7 +420,8 @@ class PersonDetailVC: UIViewController {
     }
     
     func makePhoneCall() {
-        if let url = URL(string: "tel://\(person?.phone ?? "")"), UIApplication.shared.canOpenURL(url) {
+        let finalNumber = person?.phone.formatPhoneNumber()
+        if let url = URL(string: "tel://\(finalNumber!)"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         } else {
             alert(title: "Uh Oh", message: "You can't make calls on this device") {}

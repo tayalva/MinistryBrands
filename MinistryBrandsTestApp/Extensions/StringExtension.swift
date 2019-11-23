@@ -33,4 +33,17 @@ extension String {
             return ""
         }
     }
+    
+    func formatPhoneNumber() -> String {
+        var stripped: String {
+             let number = Set("1234567890")
+            let filteredNumber = self.filter {number.contains($0)}
+            if filteredNumber.first == "1" {
+                return String(filteredNumber.prefix(11))
+            } else {
+                return String(filteredNumber.prefix(10))
+            }
+         }
+        return stripped
+    }
 }
