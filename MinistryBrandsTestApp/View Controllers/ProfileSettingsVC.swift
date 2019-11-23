@@ -194,7 +194,7 @@ class ProfileSettingsVC: UIViewController {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
         label.font = UIFont(name: "HelveticaNeue-Thin", size: 18)
-        label.text = "Use Face/Finger ID"
+        label.text = "Use Face/Touch ID"
         label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -434,7 +434,7 @@ class ProfileSettingsVC: UIViewController {
         settingsLabel.translatesAutoresizingMaskIntoConstraints = false
         settingsLabel.centerYAnchor.constraint(equalTo: settingsImageView.centerYAnchor).isActive = true
         settingsLabel.leadingAnchor.constraint(equalTo: settingsImageView.trailingAnchor, constant: 20).isActive = true
-        settingsLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        settingsLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         faceIDToggle.translatesAutoresizingMaskIntoConstraints = false
         faceIDToggle.centerYAnchor.constraint(equalTo: settingsImageView.centerYAnchor).isActive = true
