@@ -53,6 +53,21 @@
             </objects>
             <point key="canvasLocation" x="2587" y="90"/>
         </scene>
+        <!--Profile SettingsVC-->
+        <scene sceneID="5BT-zC-oHU">
+            <objects>
+                <viewController storyboardIdentifier="ProfileSettingsVC" id="jv8-d7-6Z9" customClass="ProfileSettingsVC" customModule="MinistryBrandsTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k7i-88-hGA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="HLt-ic-Ozq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bGg-sS-qsf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3336" y="90"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7et-nr-V2A">
             <objects>

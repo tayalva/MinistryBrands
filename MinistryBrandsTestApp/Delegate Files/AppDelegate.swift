@@ -11,9 +11,14 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    func getDocumentsDirectory() -> URL {
+           let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+           let documentsDirectory = paths[0]
+           return documentsDirectory
+       }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        print(getDocumentsDirectory())
         // Override point for customization after application launch.
         return true
     }

@@ -8,7 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		23750FC979BBF3A5DAF893F0 /* Pods_MinistryBrandsTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AD6632035E0DA2261CD124 /* Pods_MinistryBrandsTestApp.framework */; };
+		34268CD82388875200DF66A4 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268CD72388875200DF66A4 /* DateFormatterExtension.swift */; };
+		34268CDA2388921F00DF66A4 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268CD92388921F00DF66A4 /* StringExtension.swift */; };
+		34268CDE2388F98500DF66A4 /* ProfileSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268CDD2388F98500DF66A4 /* ProfileSettingsVC.swift */; };
+		34268CE02389012400DF66A4 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34268CDF2389012400DF66A4 /* UITextViewExtension.swift */; };
+		3432D27523883B8A00E99241 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432D27423883B8A00E99241 /* UIButtonExtension.swift */; };
+		3432D27B2388431700E99241 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432D27A2388431700E99241 /* GradientView.swift */; };
 		347F89D723873CE70037FC70 /* PersonDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F89D623873CE70037FC70 /* PersonDetailVC.swift */; };
+		3480A68E238938B000FD223A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3480A68D238938B000FD223A /* User.swift */; };
+		3480A690238939AC00FD223A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3480A68F238939AC00FD223A /* RealmManager.swift */; };
 		34B9628A238508B6005A50D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B96289238508B6005A50D8 /* AppDelegate.swift */; };
 		34B9628C238508B6005A50D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9628B238508B6005A50D8 /* SceneDelegate.swift */; };
 		34B9628E238508B6005A50D8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9628D238508B6005A50D8 /* LoginVC.swift */; };
@@ -24,7 +32,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34268CD72388875200DF66A4 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		34268CD92388921F00DF66A4 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		34268CDD2388F98500DF66A4 /* ProfileSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsVC.swift; sourceTree = "<group>"; };
+		34268CDF2389012400DF66A4 /* UITextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
+		3432D27423883B8A00E99241 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		3432D27A2388431700E99241 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		347F89D623873CE70037FC70 /* PersonDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonDetailVC.swift; path = MinistryBrandsTestApp/PersonDetailVC.swift; sourceTree = SOURCE_ROOT; };
+		3480A68D238938B000FD223A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3480A68F238939AC00FD223A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		34B96286238508B6005A50D8 /* MinistryBrandsTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinistryBrandsTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34B96289238508B6005A50D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34B9628B238508B6005A50D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +81,34 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		34268CD523886D0100DF66A4 /* Delegate Files */ = {
+			isa = PBXGroup;
+			children = (
+				34B96289238508B6005A50D8 /* AppDelegate.swift */,
+				34B9628B238508B6005A50D8 /* SceneDelegate.swift */,
+			);
+			path = "Delegate Files";
+			sourceTree = "<group>";
+		};
+		34268CD623886D1600DF66A4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				34B9628F238508B6005A50D8 /* Main.storyboard */,
+				34B96292238508B8005A50D8 /* Assets.xcassets */,
+				34B96294238508B8005A50D8 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3480A69123893A3600FD223A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				34C569B72385E7B700A79B6C /* NetworkManager.swift */,
+				3480A68F238939AC00FD223A /* RealmManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		34B9627D238508B5005A50D8 = {
 			isa = PBXGroup;
 			children = (
@@ -86,16 +130,14 @@
 		34B96288238508B6005A50D8 /* MinistryBrandsTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				34B96289238508B6005A50D8 /* AppDelegate.swift */,
-				34B9628B238508B6005A50D8 /* SceneDelegate.swift */,
+				34268CD523886D0100DF66A4 /* Delegate Files */,
+				34B9629D23850A7A005A50D8 /* View Controllers */,
+				3480A69123893A3600FD223A /* Managers */,
 				34C569B4238510B600A79B6C /* Objects */,
 				34C569C12386507700A79B6C /* CustomCells */,
-				34B9629D23850A7A005A50D8 /* View Controllers */,
 				34B9629E23850A8B005A50D8 /* Extensions */,
-				34B9628F238508B6005A50D8 /* Main.storyboard */,
-				34B96292238508B8005A50D8 /* Assets.xcassets */,
-				34B96294238508B8005A50D8 /* LaunchScreen.storyboard */,
 				34B96297238508B8005A50D8 /* Info.plist */,
+				34268CD623886D1600DF66A4 /* Resources */,
 			);
 			path = MinistryBrandsTestApp;
 			sourceTree = "<group>";
@@ -106,6 +148,7 @@
 				34B9628D238508B6005A50D8 /* LoginVC.swift */,
 				34C569BB2385F0CE00A79B6C /* HomeVC.swift */,
 				347F89D623873CE70037FC70 /* PersonDetailVC.swift */,
+				34268CDD2388F98500DF66A4 /* ProfileSettingsVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -115,6 +158,10 @@
 			children = (
 				34C569B22385104600A79B6C /* UIColorExtension.swift */,
 				34C569BD2385F28C00A79B6C /* UIViewControllerExtension.swift */,
+				3432D27423883B8A00E99241 /* UIButtonExtension.swift */,
+				34268CD72388875200DF66A4 /* DateFormatterExtension.swift */,
+				34268CD92388921F00DF66A4 /* StringExtension.swift */,
+				34268CDF2389012400DF66A4 /* UITextViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -123,7 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				34C569B92385EBBB00A79B6C /* Person.swift */,
-				34C569B72385E7B700A79B6C /* NetworkManager.swift */,
+				3480A68D238938B000FD223A /* User.swift */,
+				3432D27A2388431700E99241 /* GradientView.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -260,15 +308,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				347F89D723873CE70037FC70 /* PersonDetailVC.swift in Sources */,
+				3432D27523883B8A00E99241 /* UIButtonExtension.swift in Sources */,
+				34268CD82388875200DF66A4 /* DateFormatterExtension.swift in Sources */,
 				34C569B82385E7B700A79B6C /* NetworkManager.swift in Sources */,
+				34268CDA2388921F00DF66A4 /* StringExtension.swift in Sources */,
 				34C569BC2385F0CE00A79B6C /* HomeVC.swift in Sources */,
 				34C569BE2385F28C00A79B6C /* UIViewControllerExtension.swift in Sources */,
 				34C569C32386509400A79B6C /* PersonCell.swift in Sources */,
 				34B9628E238508B6005A50D8 /* LoginVC.swift in Sources */,
 				34B9628A238508B6005A50D8 /* AppDelegate.swift in Sources */,
+				34268CDE2388F98500DF66A4 /* ProfileSettingsVC.swift in Sources */,
 				34C569BA2385EBBB00A79B6C /* Person.swift in Sources */,
+				3432D27B2388431700E99241 /* GradientView.swift in Sources */,
+				34268CE02389012400DF66A4 /* UITextViewExtension.swift in Sources */,
 				34B9628C238508B6005A50D8 /* SceneDelegate.swift in Sources */,
+				3480A690238939AC00FD223A /* RealmManager.swift in Sources */,
 				34C569B32385104600A79B6C /* UIColorExtension.swift in Sources */,
+				3480A68E238938B000FD223A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

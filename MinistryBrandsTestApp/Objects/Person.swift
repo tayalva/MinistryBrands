@@ -8,11 +8,23 @@
 
 import Foundation
 
+protocol PersonNameable {
+    var firstName: String {get}
+    var lastName: String {get}
+    var gender: String {get}
+    var dob: String {get}
+    var email: String {get}
+    var phone: String {get}
+    var website: String {get}
+    var address: String {get}
+    var status: String {get}
+}
+
 class PersonResult: Codable {
     var result: [Person]
 }
 
-class Person: Codable {
+class Person: PersonNameable, Codable {
     var id: String
     var firstName: String
     var lastName: String

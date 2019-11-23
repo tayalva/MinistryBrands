@@ -10,16 +10,15 @@ import UIKit
 
 class PersonCell: UITableViewCell {
     
-    let containerView: UIView = {
-        let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+    let containerView: UIView  = {
+        let view = GradientView(gradientStartColor: UIColor.turquoise, gradientEndColor: UIColor.parisGreen)
+        view.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
-        view.backgroundColor = UIColor.parisGreen
         return view
     }()
     
-     let personImageView: UIImageView = {
+    let personImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         imageView.clipsToBounds = true
@@ -39,6 +38,7 @@ class PersonCell: UITableViewCell {
         containerView.addSubview(personImageView)
         containerView.addSubview(nameLabel)
         addConstraints()
+        cellSetup()
         self.selectionStyle = .none
     }
     
@@ -58,6 +58,7 @@ class PersonCell: UITableViewCell {
     func cellSetup() {
         self.selectionStyle = .none
         contentView.backgroundColor = UIColor.clear
+
     }
     
     

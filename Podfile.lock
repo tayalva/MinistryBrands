@@ -1,12 +1,18 @@
 PODS:
   - Alamofire (4.9.1)
   - Nuke (8.3.1)
+  - Realm (4.1.1):
+    - Realm/Headers (= 4.1.1)
+  - Realm/Headers (4.1.1)
+  - RealmSwift (4.1.1):
+    - Realm (= 4.1.1)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - Nuke
+  - RealmSwift
   - SVProgressHUD
   - SwiftyJSON
 
@@ -14,15 +20,19 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Nuke
+    - Realm
+    - RealmSwift
     - SVProgressHUD
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Nuke: 85fb80f8df0cb26c28d2f4e0cb7fb93bcd6548d3
+  Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
+  RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: ebcdd0745a2038e782d998bae4b995dbed900ef3
+PODFILE CHECKSUM: c6a4b49b2ab55aa57327e77b93772553742453fc
 
 COCOAPODS: 1.8.3

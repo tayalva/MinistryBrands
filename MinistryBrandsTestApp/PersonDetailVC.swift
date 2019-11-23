@@ -8,18 +8,31 @@
 
 import UIKit
 import Nuke
+import MessageUI
 
 class PersonDetailVC: UIViewController {
     
     var person: Person?
+//MARK: UI objects
+    var infoStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.distribution = .fillEqually
+        stack.axis = .vertical
+        stack.spacing = 10
+        return stack
+    }()
+    
+    var profileImageShadowView: UIView = {
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        view.clipsToBounds = false
+        return view
+    }()
     
     var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         imageView.clipsToBounds = true
-        //        imageView.layer.cornerRadius = imageView.frame.size.height / 2
-        imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.layer.borderWidth = 1
         return imageView
     }()
     
@@ -140,6 +153,50 @@ class PersonDetailVC: UIViewController {
         return label
     }()
     
+    var ageView: UIView = {
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+        view.layer.cornerRadius = 10
+        view.backgroundColor = .jungleGreen
+        return view
+    }()
+    
+    var ageImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = #imageLiteral(resourceName: "age")
+        return imageView
+    }()
+    
+    var ageLabel: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
+        label.font = UIFont(name: "HelveticaNeue", size: 18)
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .left
+        return label
+    }()
+    
+    var emailButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        button.tag = 0
+        button.addTarget(self, action: #selector(actionButtons(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    var phoneButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        button.tag = 1
+        button.addTarget(self, action: #selector(actionButtons(sender:)), for: .touchUpInside)
+        return button
+    }()
+ //MARK: life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
@@ -147,7 +204,67 @@ class PersonDetailVC: UIViewController {
         updateUI()
     }
     
- 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animateElements()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        additionalUISetup()
+    }
+//MARK: UI helper methods
+    func additionalUISetup() {
+        profileImageShadowView.layer.cornerRadius = profileImageShadowView.frame.height / 2
+        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+        if person?.gender == "female" {
+            profileImageShadowView.layer.shadowColor = UIColor.systemPink.cgColor
+        } else {
+            profileImageShadowView.layer.shadowColor = UIColor.systemBlue.cgColor
+        }
+        profileImageShadowView.layer.shadowOpacity = 1
+        profileImageShadowView.layer.shadowOffset = CGSize.zero
+        profileImageShadowView.layer.shadowRadius = 50
+        profileImageShadowView.layer.shadowPath = UIBezierPath(roundedRect: profileImageShadowView.bounds, cornerRadius: profileImageShadowView.frame.height/2).cgPath
+    }
+    
+    func animateElements() {
+        profileImageView.alpha = 0
+        nameLabel.alpha = 0
+        emailView.center.x += view.bounds.width
+        phoneView.center.x += view.bounds.width
+        addressView.center.x  += view.bounds.width
+        birthdayView.center.x  += view.bounds.width
+        ageView.center.x  += view.bounds.width
+        
+        UIView.animate(withDuration: 1.0) {
+            self.profileImageView.alpha = 1
+        }
+        
+        UIView.animate(withDuration: 1.0, delay: 0.1, options: [], animations: {
+            self.nameLabel.alpha = 1
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.1, options: [], animations: {
+            self.emailView.center.x -= self.view.bounds.width
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.2, options: [], animations: {
+            self.phoneView.center.x -= self.view.bounds.width
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
+            self.addressView.center.x -= self.view.bounds.width
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
+            self.birthdayView.center.x -= self.view.bounds.width
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
+            self.ageView.center.x -= self.view.bounds.width
+        }, completion: nil)
+        
+    }
     
     func updateUI() {
         guard let person = person else {return}
@@ -161,44 +278,65 @@ class PersonDetailVC: UIViewController {
         emailLabel.text = person.email
         phoneLabel.text = person.phone
         addressLabel.text = person.address
-        birthdayLabel.text = person.dob
+        birthdayLabel.text = person.dob.formatDate(style: .medium)
+        ageLabel.text = person.dob.calculateAge()
     }
     
+    
+    
     func addSubViews() {
+        view.addSubview(profileImageShadowView)
         view.addSubview(profileImageView)
         view.addSubview(nameLabel)
-        view.addSubview(emailView)
-        view.addSubview(phoneView)
-        view.addSubview(addressView)
-        view.addSubview(birthdayView)
+        view.addSubview(infoStackView)
+        
+        infoStackView.addArrangedSubview(emailView)
+        infoStackView.addArrangedSubview(phoneView)
+        infoStackView.addArrangedSubview(addressView)
+        infoStackView.addArrangedSubview(birthdayView)
+        infoStackView.addArrangedSubview(ageView)
+        
         emailView.addSubview(emailImageView)
         emailView.addSubview(emailLabel)
+        emailView.addSubview(emailButton)
         phoneView.addSubview(phoneImageView)
         phoneView.addSubview(phoneLabel)
+        phoneView.addSubview(phoneButton)
         addressView.addSubview(addressImageView)
         addressView.addSubview(addressLabel)
         birthdayView.addSubview(birthdayImageView)
         birthdayView.addSubview(birthdayLabel)
+        ageView.addSubview(ageImageView)
+        ageView.addSubview(ageLabel)
     }
-    
+
+//MARK: Constraints
     func addConstraints() {
+        
+        let margins = view.layoutMarginsGuide
+        profileImageShadowView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageShadowView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 100).isActive = true
+        profileImageShadowView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -100).isActive = true
+        profileImageShadowView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 30.0).isActive = true
+        profileImageShadowView.heightAnchor.constraint(equalTo: profileImageShadowView.widthAnchor, multiplier: 1.0/1.0).isActive = true
+        
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+        profileImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 100).isActive = true
+        profileImageView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -100).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 30.0).isActive = true
+        profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1.0/1.0).isActive = true
+        
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 20).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10).isActive = true
         
-        emailView.translatesAutoresizingMaskIntoConstraints = false
-        emailView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
-        emailView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        emailView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        emailView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07).isActive = true
+        infoStackView.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+        infoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        infoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        infoStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 80).isActive = true
         
         emailImageView.translatesAutoresizingMaskIntoConstraints = false
         emailImageView.topAnchor.constraint(equalTo: emailView.topAnchor, constant: 5).isActive = true
@@ -211,11 +349,11 @@ class PersonDetailVC: UIViewController {
         emailLabel.leadingAnchor.constraint(equalTo: emailImageView.trailingAnchor, constant: 10).isActive = true
         emailLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
-        phoneView.translatesAutoresizingMaskIntoConstraints = false
-        phoneView.topAnchor.constraint(equalTo: emailView.bottomAnchor, constant: 10).isActive = true
-        phoneView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        phoneView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        phoneView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07).isActive = true
+        emailButton.translatesAutoresizingMaskIntoConstraints = false
+        emailButton.bottomAnchor.constraint(equalTo: emailView.bottomAnchor, constant: 0).isActive = true
+        emailButton.leadingAnchor.constraint(equalTo: emailView.leadingAnchor, constant: 0).isActive = true
+        emailButton.trailingAnchor.constraint(equalTo: emailView.trailingAnchor, constant: 0).isActive = true
+        emailButton.topAnchor.constraint(equalTo: emailView.topAnchor, constant: 0).isActive = true
         
         phoneImageView.translatesAutoresizingMaskIntoConstraints = false
         phoneImageView.topAnchor.constraint(equalTo: phoneView.topAnchor, constant: 5).isActive = true
@@ -228,11 +366,11 @@ class PersonDetailVC: UIViewController {
         phoneLabel.leadingAnchor.constraint(equalTo: phoneImageView.trailingAnchor, constant: 10).isActive = true
         phoneLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
-        addressView.translatesAutoresizingMaskIntoConstraints = false
-        addressView.topAnchor.constraint(equalTo: phoneView.bottomAnchor, constant: 10).isActive = true
-        addressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        addressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        addressView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
+        phoneButton.translatesAutoresizingMaskIntoConstraints = false
+        phoneButton.bottomAnchor.constraint(equalTo: phoneView.bottomAnchor, constant: 0).isActive = true
+        phoneButton.leadingAnchor.constraint(equalTo: phoneView.leadingAnchor, constant: 0).isActive = true
+        phoneButton.trailingAnchor.constraint(equalTo: phoneView.trailingAnchor, constant: 0).isActive = true
+        phoneButton.topAnchor.constraint(equalTo: phoneView.topAnchor, constant: 0).isActive = true
         
         addressImageView.translatesAutoresizingMaskIntoConstraints = false
         addressImageView.topAnchor.constraint(equalTo: addressView.topAnchor, constant: 5).isActive = true
@@ -245,12 +383,6 @@ class PersonDetailVC: UIViewController {
         addressLabel.leadingAnchor.constraint(equalTo: addressImageView.trailingAnchor, constant: 10).isActive = true
         addressLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        birthdayView.translatesAutoresizingMaskIntoConstraints = false
-        birthdayView.topAnchor.constraint(equalTo: addressView.bottomAnchor, constant: 10).isActive = true
-        birthdayView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        birthdayView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        birthdayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07).isActive = true
-        
         birthdayImageView.translatesAutoresizingMaskIntoConstraints = false
         birthdayImageView.topAnchor.constraint(equalTo: birthdayView.topAnchor, constant: 5).isActive = true
         birthdayImageView.leadingAnchor.constraint(equalTo: birthdayView.leadingAnchor, constant: 10).isActive = true
@@ -261,5 +393,53 @@ class PersonDetailVC: UIViewController {
         birthdayLabel.centerYAnchor.constraint(equalTo: birthdayImageView.centerYAnchor).isActive = true
         birthdayLabel.leadingAnchor.constraint(equalTo: birthdayImageView.trailingAnchor, constant: 10).isActive = true
         birthdayLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        ageImageView.translatesAutoresizingMaskIntoConstraints = false
+        ageImageView.topAnchor.constraint(equalTo: ageView.topAnchor, constant: 5).isActive = true
+        ageImageView.leadingAnchor.constraint(equalTo: ageView.leadingAnchor, constant: 10).isActive = true
+        ageImageView.widthAnchor.constraint(equalTo: ageView.widthAnchor, multiplier: 0.08).isActive = true
+        ageImageView.bottomAnchor.constraint(equalTo: ageView.bottomAnchor, constant: -5).isActive = true
+        
+        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+        ageLabel.centerYAnchor.constraint(equalTo: ageView.centerYAnchor).isActive = true
+        ageLabel.leadingAnchor.constraint(equalTo: ageImageView.trailingAnchor, constant: 10).isActive = true
+        ageLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
+  //MARK: Button logic
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([person?.email ?? ""])
+            mail.setMessageBody("<p>Hello There!</p>", isHTML: true)
+            present(mail, animated: true)
+        } else {
+            alert(title: "Uh Oh", message: "You can't send emails on this device") {}
+        }
+    }
+    
+    func makePhoneCall() {
+        if let url = URL(string: "tel://\(person?.phone ?? "")"), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        } else {
+            alert(title: "Uh Oh", message: "You can't make calls on this device") {}
+        }
+    }
+    
+    @objc func actionButtons(sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            sendEmail()
+        case 1:
+            makePhoneCall()
+        default: return
+        }
+    }
+}
+
+extension PersonDetailVC: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
